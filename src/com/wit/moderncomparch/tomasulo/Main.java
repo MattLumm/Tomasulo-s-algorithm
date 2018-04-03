@@ -6,6 +6,12 @@ public class Main {
     static Scanner reader = new Scanner(System.in);
     public Boolean[] registerBusyBits;
 
+    public static Buffer instructionQueue;
+    public static Buffer storeBuffer;
+    public static Buffer loadBuffer;
+    public static Buffer integerReservationStation;
+    public static Buffer floatingPointMultiplicationReservationStation;
+
 	public static void main(String[] args) {
         int latency, rs;
 		getLatency();
