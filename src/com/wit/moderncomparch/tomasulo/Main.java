@@ -13,7 +13,6 @@ public class Main {
     public static Buffer floatingPointMultiplicationReservationStation;
 
 	public static void main(String[] args) {
-        int latency, rs;
 		getLatency();
 		getReservationStation();
 	}
