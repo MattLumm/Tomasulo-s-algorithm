@@ -8,7 +8,7 @@ public class Instruction {
 	private String immediateReg3;
 	private Boolean busyBit;
 	
-	private Instruction[] regArray;
+	private String[] regArray;
 	
 	public Instruction(String n,String r1,String r2,String r3,Boolean bB){
 		name=n;
@@ -48,8 +48,8 @@ public class Instruction {
      * @param Boolean of bit to either true or false
      * @return BusyBit is set to bit 
      */
-	public null setBusyBit(Boolean bit) {
+	public void setBusyBit(Boolean bit) {
 		busyBit=bit;
-		return null;
+		return;
 	}
 }
