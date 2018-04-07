@@ -15,6 +15,29 @@ public class Main {
 	public static void main(String[] args) {
 		getLatency();
 		getReservationStation();
+		getCycles();
+
+		Instruction inst = new Instruction("LDUR", "X6", "X2", "32", true);
+		try {
+			Issue.queueToReservation(inst);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// Execute.dfjdf();
+		Write.displayData();
+		//Write.writebackInstruction();
+
+	}
+
+	/**
+	 * Gets input for latency size from the user in order to make the program interactive
+	 * @return size - the size of the latency
+	 */
+	public static int getCycles() {
+		System.out.println("Please enter the number of cycles desired: ");
+		int cycles = reader.nextInt();
+		return cycles;
 	}
 
 		/**
