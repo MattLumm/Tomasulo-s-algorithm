@@ -5,7 +5,6 @@ public class Main {
 
     static Scanner reader = new Scanner(System.in);
     public Boolean[] registerBusyBits;
-
     public static Buffer instructionQueue;
     public static Buffer storeBuffer;
     public static Buffer loadBuffer;
@@ -13,9 +12,9 @@ public class Main {
     public static Buffer floatingPointMultiplicationReservationStation;
 
 	public static void main(String[] args) {
-		getLatency();
-		getReservationStation();
-		getCycles();
+		int latency = getLatency();
+		int rs = getReservationStation();
+		int cycles = getCycles();
 
 		Instruction inst = new Instruction("LDUR", "X6", "X2", "32", true);
 		try {
@@ -24,10 +23,15 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		// Execute.dfjdf();
-		Write.displayData();
-		//Write.writebackInstruction();
+	//	Issue.readOperands();
+	//	Issue.renameDestination();
 
+	//	Execute.checkLatency(latency);
+	//	Execute.setData();
+	//	Execute.getData();
+	//	Execute.snoopCDB();
+		Write.displayData(cycles);
+		Write.writebackInstruction(inst);
 	}
 
 	/**
