@@ -11,14 +11,24 @@ public class Main {
     public static Buffer integerReservationStation;
     public static Buffer floatingPointMultiplicationReservationStation;
 
+    private static final Instruction[] instructions = {new Instruction("LDUR", "X6", "X2", "32", true)};
+
 	public static void main(String[] args) {
 		int latency = getLatency();
 		int rs = getReservationStation();
 		int cycles = getCycles();
+		instructionQueue = new Buffer(instructions.length);
+		storeBuffer = new Buffer(4);
+		loadBuffer = new Buffer(4);
+		integerReservationStation = new Buffer(rs);
+		floatingPointMultiplicationReservationStation = new Buffer(rs);
 
-		Instruction inst = new Instruction("LDUR", "X6", "X2", "32", true);
+		for (Instruction instruction:instructions){
+			instructionQueue.addInstruction(instruction);
+		}
+
 		try {
-			Issue.queueToReservation(inst);
+			Issue.queueToReservation(instructions[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,7 +41,7 @@ public class Main {
 	//	Execute.getData();
 	//	Execute.snoopCDB();
 		Write.displayData(cycles);
-		Write.writebackInstruction(inst);
+		Write.writebackInstruction(instructions[0]);
 	}
 
 	/**

@@ -12,6 +12,6 @@ public class Execute {
 		return;
 	}
 	public int getData() {
-		reutrn1;
+		return 1;
 	}
 }
