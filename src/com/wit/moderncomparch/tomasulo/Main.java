@@ -9,9 +9,16 @@ public class Main {
     public static Buffer storeBuffer;
     public static Buffer loadBuffer;
     public static Buffer integerReservationStation;
+    public static Buffer floatingPointAdditionReservationStation;
     public static Buffer floatingPointMultiplicationReservationStation;
 
-    private static final Instruction[] instructions = {new Instruction("LDUR", "X6", "X2", "32", true)};
+    private static final Instruction[] instructions = {
+    		new Instruction("LDUR", "X6", "X2", "32", true),
+			new Instruction("LDUR", "X2", "X3", "44", true),
+			new Instruction("FMULT", "X0", "X4", "X2", true),
+			new Instruction("FSUB", "X8", "X2", "X6", true),
+			new Instruction("FDIV", "X10", "X6", "X0", true),
+			new Instruction("FADD", "X6", "X2", "X8", true)};
 
 	public static void main(String[] args) {
 		int latency = getLatency();

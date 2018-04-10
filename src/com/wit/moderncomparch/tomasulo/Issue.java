@@ -9,10 +9,13 @@ public class Issue {
             case "STUR":
                 return Main.storeBuffer.addInstruction(instruction);
             case "ADDI":
-                return Main.integerReservationStation.addInstruction(instruction);
             case "SUBI":
                 return Main.integerReservationStation.addInstruction(instruction);
+            case "FADD":
+            case "FSUB":
+                return Main.floatingPointAdditionReservationStation.addInstruction(instruction);
             case "FMULT":
+            case "FDIV":
                 return Main.floatingPointMultiplicationReservationStation.addInstruction(instruction);
             default:
                 throw new Exception("Unknown Instruction Type: " + instructionType);
