@@ -11,6 +11,11 @@ public class Main {
     public static Buffer integerReservationStation;
     public static Buffer floatingPointAdditionReservationStation;
     public static Buffer floatingPointMultiplicationReservationStation;
+	public static ExecuteUnit memoryUnit;
+	public static ExecuteUnit fPadderUnit;
+	public static ExecuteUnit fPmultiplierUnit;
+
+
 
     private static final Instruction[] instructions = {
     		new Instruction("LDUR", "X6", "X2", "32", true),
@@ -21,6 +26,7 @@ public class Main {
 			new Instruction("FADD", "X6", "X2", "X8", true)};
 
 	public static void main(String[] args) {
+		int currentCycle=0;
 		int latency = getLatency();
 		int rs = getReservationStation();
 		int cycles = getCycles();
@@ -29,13 +35,26 @@ public class Main {
 		loadBuffer = new Buffer(4);
 		integerReservationStation = new Buffer(rs);
 		floatingPointMultiplicationReservationStation = new Buffer(rs);
+		memoryUnit = new ExecuteUnit();
+		fPadderUnit = new ExecuteUnit();
+		fPmultiplierUnit = new ExecuteUnit();
 
 		for (Instruction instruction:instructions){
 			instructionQueue.addInstruction(instruction);
 		}
 
 		try {
+			currentCycle++;
 			Issue.queueToReservation(instructions[0]);
+			try{
+				Execute.execute(instructions[0], cycles, currentCycle);
+				memoryUnit.checkExecute(currentCycle);
+				fPadderUnit.checkExecute(currentCycle);
+				fPmultiplierUnit.checkExecute(currentCycle);
+
+			} catch(Exception e){
+				e.printStackTrace();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

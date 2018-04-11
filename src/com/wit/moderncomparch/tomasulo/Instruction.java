@@ -7,6 +7,7 @@ public class Instruction {
 	private String reg2;
 	private String immediateReg3;
 	private Boolean busyBit;
+	private int executeLatencyCycle;
 	
 	private String[] regArray;
 	
@@ -16,6 +17,7 @@ public class Instruction {
 		reg2=r2;
 		immediateReg3=r3;
 		busyBit=bB;
+		executeLatencyCycle=0;
     }
 	
 	/**
@@ -44,12 +46,24 @@ public class Instruction {
 		return busyBit;
 	}
 	/**
-     * Gets Name of the Instruction
-     * @param Boolean of bit to either true or false
-     * @return BusyBit is set to bit 
+     * Sets the BusyBit
+     * @parameter Boolean of bit to either true or false
+     * @return BusyBit is set to bit
      */
 	public void setBusyBit(Boolean bit) {
 		busyBit=bit;
 		return;
+	}
+	/**
+     * Set's theExecutionLatencyCycle
+	 * @parameter int of the current cycle + latency of the instruction
+	 * @set executeLatencyCycle set in the instruction
+	 */
+	public void setExecuteLatencyCycle(int Cycle){
+		executeLatencyCycle=Cycle;
+		return;
+	}
+	public int getExecuteLatencyCycle(){
+		return executeLatencyCycle;
 	}
 }
