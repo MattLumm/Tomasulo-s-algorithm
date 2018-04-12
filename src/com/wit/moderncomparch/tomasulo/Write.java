@@ -1,20 +1,18 @@
 package com.wit.moderncomparch.tomasulo;
 
-
 public class Write {
-
-    public static void displayData(Instruction[] inst, int cycles) {
+    public static void displayData(Instruction[] inst, int cycles, Buffer buff) {
         //Instruction table
 
         for(int i = 0; i <= (cycles - 1); i++){
-            Buffer buff = new Buffer(4);
-            inst = buff.getAllInstructions();
+            buff.getAllInstructions();
+
             System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println("| Instruction     |      | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             for (int j = 0; j < 6; j++) {
-                System.out.println("|     " + inst + "     |");
+                System.out.println("|          |");
             }
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println();
