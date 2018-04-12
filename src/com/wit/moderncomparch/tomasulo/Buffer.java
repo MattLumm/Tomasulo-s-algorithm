@@ -65,5 +65,11 @@ public class Buffer {
         return true;
     }
 
-
+    /**
+     * Returns all the instructions in the buffer
+     * @return array of instructions in buffer
+     */
+    public Instruction[] getAllInstructions(){
+        return instructionBuffer;
+    }
 }
