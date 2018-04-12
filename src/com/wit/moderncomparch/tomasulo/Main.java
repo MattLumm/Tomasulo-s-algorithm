@@ -13,6 +13,7 @@ public class Main {
     public static Buffer integerReservationStation;
     public static Buffer floatingPointAdditionReservationStation;
     public static Buffer floatingPointMultiplicationReservationStation;
+    public static ReorderBuffer reorderBuffer;
 	public static ExecuteUnit memoryUnit;
 	public static ExecuteUnit fPadderUnit;
 	public static ExecuteUnit fPmultiplierUnit;
@@ -37,6 +38,7 @@ public class Main {
 		loadBuffer = new Buffer(4);
 		integerReservationStation = new Buffer(rs);
 		floatingPointMultiplicationReservationStation = new Buffer(rs);
+		reorderBuffer = new ReorderBuffer(4);
 		memoryUnit = new ExecuteUnit();
 		fPadderUnit = new ExecuteUnit();
 		fPmultiplierUnit = new ExecuteUnit();

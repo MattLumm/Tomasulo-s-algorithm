@@ -1,7 +1,7 @@
 package com.wit.moderncomparch.tomasulo;
 
 public class Buffer {
-    private Instruction[] instructionBuffer;
+    protected Instruction[] instructionBuffer;
 
     public Buffer(int bufferSize){
         instructionBuffer = new Instruction[bufferSize];
