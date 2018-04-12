@@ -92,4 +92,13 @@ public class ReorderBuffer extends Buffer {
     public double[] getAllResults(){
         return results;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < instructionBuffer.length; i++){
+            output.append(instructionBuffer[i].toString()).append(" | ").append(results[i]).append(" |/n");
+        }
+        return output.toString();
+    }
 }
