@@ -9,15 +9,15 @@ public class Write {
         //Instruction table
         for(int i = 0; i <= (cycles - 1); i++){
             ReorderBuffer reBuff = new ReorderBuffer(4);
-            String table1 = buff.getAllInstructions().toString();
-            String table2 = reBuff.getAllResults().toString();
+            //String table1 = buff.getAllInstructions().toString();
+            //String table2 = reBuff.getAllResults().toString();
 
             System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println("| Instruction     |      | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             for (int j = 0; j < 6; j++) {
-                System.out.println("|     " + table1 + "    |");
+                System.out.println("|     " + buff.getAllInstructions()[i].toString() + "    |");
             }
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println();
@@ -27,7 +27,7 @@ public class Write {
             System.out.println("| Load Buffers |  Busy  |  Address  |");
             System.out.println("+--------------+--------+-----------+");
             for (int j = 0; j < 3; j++) {
-                System.out.println("|   " + table2 + "   |");
+                System.out.println("|   " + reBuff.getAllResults().toString() + "   |");
             }
             System.out.println("+--------------+--------+-----------+");
             System.out.println();
