@@ -14,29 +14,34 @@ public class Execute {
 		switch (instructionType) {
 			case "LDUR":
 				if(Main.memoryUnit.addInstruction(instruction,endCycle)){
+				    instruction.setExecutionStart(currentCycles);
 					Main.loadBuffer.removeInstruction();
 					return true;
 				}
 			case "STUR":
 				if(Main.memoryUnit.addInstruction(instruction,endCycle)){
+                    instruction.setExecutionStart(currentCycles);
 					Main.storeBuffer.removeInstruction();
 					return true;
 				}
 			case "ADDI":
 			case "SUBI":
 				if(Main.fPadderUnit.addInstruction(instruction,endCycle)){
+                    instruction.setExecutionStart(currentCycles);
 					Main.integerReservationStation.removeInstruction();
 					return true;
 				}
 			case "FADD":
 			case "FSUB":
 				if(Main.fPadderUnit.addInstruction(instruction,endCycle)){
+                    instruction.setExecutionStart(currentCycles);
 					Main.floatingPointAdditionReservationStation.removeInstruction();
 					return true;
 				}
 			case "FMULT":
 			case "FDIV":
 				if(Main.fPmultiplierUnit.addInstruction(instruction,endCycle)){
+                    instruction.setExecutionStart(currentCycles);
 					Main.floatingPointMultiplicationReservationStation.removeInstruction();
 					return true;
 				}

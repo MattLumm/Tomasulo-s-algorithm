@@ -38,6 +38,7 @@ public class ExecuteUnit{
     public boolean checkExecute(int currentCycle) {
         if (currentCycle >= endCycle) {
             busyBit = false;
+            executingInstruction.setWriteResult(currentCycle);
             return true;
         }
         return false;

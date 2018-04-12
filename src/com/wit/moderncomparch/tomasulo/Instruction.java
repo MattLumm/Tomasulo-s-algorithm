@@ -8,6 +8,9 @@ public class Instruction {
 	private String immediateReg3;
 	private Boolean busyBit;
 	private int executeLatencyCycle;
+	private int issue;
+	private int executionStart;
+	private int writeResult;
 	
 	private String[] regArray;
 	
@@ -66,4 +69,25 @@ public class Instruction {
 	public int getExecuteLatencyCycle(){
 		return executeLatencyCycle;
 	}
+	public void setIssue(int i){
+	    issue=i;
+	    return;
+    }
+    public void setExecutionStart(int es){
+        executionStart=es;
+        return;
+    }
+    public void setWriteResult(int wr){
+	    writeResult=wr;
+	    return;
+    }
+    public int getIssue(){
+        return issue;
+    }
+    public int getExecutionStart(){
+        return executionStart;
+    }
+    public int GetWriteResult(){
+        return writeResult;
+    }
 }
