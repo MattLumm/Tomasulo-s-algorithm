@@ -5,7 +5,7 @@ public class ExecuteUnit{
     private int endCycle;
     private boolean busyBit;
     public ExecuteUnit(){
-        executingInstruction=null;
+        executingInstruction= new Instruction("LDUR", "X1", "X0", "0", true);
         endCycle=0;
         busyBit=false;
     }
@@ -38,9 +38,15 @@ public class ExecuteUnit{
     public boolean checkExecute(int currentCycle) {
         if (currentCycle >= endCycle) {
             busyBit = false;
-            Main.flipRegisterBusyBit(executingInstruction.getRegs()[0]);
             return true;
         }
         return false;
+    }
+    /**
+     * returns executing Instruciton
+     *
+     */
+    public Instruction getExecutingInstruction(){
+        return executingInstruction;
     }
 }
