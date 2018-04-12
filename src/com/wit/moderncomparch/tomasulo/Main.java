@@ -53,12 +53,16 @@ public class Main {
 		}
 		for(currentCycle=0;currentCycle<cycles;currentCycle++) {
 			try {
-				Issue.queueToReservation(instructions[currentCycle]);
-				instructions[currentCycle].setIssue(currentCycle);
-				flipRegisterBusyBit(instructions[currentCycle].getRegs()[0], registerBusyBits);
+				if(currentCycle<instructions.length) {
+					Issue.queueToReservation(instructions[currentCycle]);
+					instructions[currentCycle].setIssue(currentCycle);
+					flipRegisterBusyBit(instructions[currentCycle].getRegs()[0], registerBusyBits);
+				}
 				try {
-					if (CheckRegisters(instructions[currentCycle], registerBusyBits)) {
-						Execute.execute(instructions[currentCycle], latency, currentCycle);
+					if(currentCycle<instructions.length) {
+						if (CheckRegisters(instructions[currentCycle], registerBusyBits)) {
+							Execute.execute(instructions[currentCycle], latency, currentCycle);
+						}
 					}
 					if (memoryUnit.checkExecute(currentCycle)) {
 						flipRegisterBusyBit(memoryUnit.getExecutingInstruction().getRegs()[0], registerBusyBits);

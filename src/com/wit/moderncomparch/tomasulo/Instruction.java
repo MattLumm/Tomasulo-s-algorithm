@@ -21,6 +21,7 @@ public class Instruction {
 		immediateReg3=r3;
 		busyBit=bB;
 		executeLatencyCycle=0;
+		writeResult=0;
     }
 	
 	/**
@@ -87,7 +88,7 @@ public class Instruction {
     public int getExecutionStart(){
         return executionStart;
     }
-    public int GetWriteResult(){
+    public int getWriteResult(){
         return writeResult;
     }
 
