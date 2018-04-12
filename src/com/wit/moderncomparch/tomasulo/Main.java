@@ -42,7 +42,7 @@ public class Main {
 		memoryUnit = new ExecuteUnit();
 		fPadderUnit = new ExecuteUnit();
 		fPmultiplierUnit = new ExecuteUnit();
-        Boolean[] registerBusyBits = new Boolean[10];
+        Boolean[] registerBusyBits = new Boolean[20];
         for(int i=0; registerBusyBits.length>i;i++){
             registerBusyBits[i]=false;
         }
@@ -52,12 +52,12 @@ public class Main {
 		}
 		for(currentCycle=0;currentCycle<cycles;currentCycle++) {
 			try {
-				Issue.queueToReservation(instructions[0]);
-				instructions[0].setIssue(currentCycle);
-				flipRegisterBusyBit(instructions[0].getRegs()[0], registerBusyBits);
+				Issue.queueToReservation(instructions[currentCycle]);
+				instructions[currentCycle].setIssue(currentCycle);
+				flipRegisterBusyBit(instructions[currentCycle].getRegs()[0], registerBusyBits);
 				try {
-					if (CheckRegisters(instructions[0], registerBusyBits)) {
-						Execute.execute(instructions[0], latency, currentCycle);
+					if (CheckRegisters(instructions[currentCycle], registerBusyBits)) {
+						Execute.execute(instructions[currentCycle], latency, currentCycle);
 					}
 					if (memoryUnit.checkExecute(currentCycle)) {
 						flipRegisterBusyBit(memoryUnit.getExecutingInstruction().getRegs()[0], registerBusyBits);
@@ -76,7 +76,7 @@ public class Main {
 			}
 		}
 		
-		Write.displayData(instructions, cycles, loadBuffer,registerBusyBits);
+		Write.displayData(instructions, cycles, storeBuffer, loadBuffer, integerReservationStation, floatingPointAdditionReservationStation, floatingPointMultiplicationReservationStation, registerBusyBits);
 		Write.writebackInstruction(instructions[0]);
 	}
 
