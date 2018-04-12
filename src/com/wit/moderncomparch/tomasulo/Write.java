@@ -27,7 +27,7 @@ public class Write {
             System.out.println("| Load Buffers |  Busy  |  Address  |");
             System.out.println("+--------------+--------+-----------+");
             for (int j = 0; j < 3; j++) {
-                System.out.println("|   " + reBuff.getAllResults().toString() + "   |");
+                //System.out.println("|   " + reBuff.getAllResults().toString() + "   |");
             }
             System.out.println("+--------------+--------+-----------+");
             System.out.println();
@@ -48,7 +48,7 @@ public class Write {
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println("| Clock  |    |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
-            System.out.println("|   "+ (i+1) + "    | FU |      |");
+            System.out.println("|   "+ (i+1) + "    | FU |"+bB[0]+" |"+"|  "+bB[2]+"  |"+"|  "+bB[4]+"  |"+"|  "+bB[6]+"  |"+"|  "+bB[8]+"  |"+"|   "+"   |"+"|   "+"   |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println();
 
