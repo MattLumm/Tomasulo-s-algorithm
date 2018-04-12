@@ -5,19 +5,18 @@ public class Write {
     /**
      * Displays data into tables
      */
-    public static void displayData(Instruction[] inst, int cycles, Buffer buff) {
+    public static void displayData(Instruction[] inst, int cycles, Buffer buff, Boolean[] bB) {
         //Instruction table
         for(int i = 0; i <= (cycles - 1); i++){
             ReorderBuffer reorderBuffer = new ReorderBuffer(4);
-
-            reorderBuffer.getAllResults();
+            String table1 = buff.getAllInstructions().toString();
 
             System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println("| Instruction     |      | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             for (int j = 0; j < 6; j++) {
-                System.out.println("|     " + buff.getAllInstructions() + "    |");
+                System.out.println("|     " + table1 + "    |");
             }
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println();
@@ -27,7 +26,7 @@ public class Write {
             System.out.println("| Load Buffers |  Busy  |  Address  |");
             System.out.println("+--------------+--------+-----------+");
             for (int j = 0; j < 3; j++) {
-                System.out.println("|   " + reorderBuffer.getAllResults() + "   |");
+                System.out.println("|   " + reorderBuffer.getAllResults().toString() + "   |");
             }
             System.out.println("+--------------+--------+-----------+");
             System.out.println();
@@ -48,7 +47,7 @@ public class Write {
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println("| Clock  |    |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
-            System.out.println("| "+ (i+1) + "  | FU |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
+            System.out.println("|   "+ (i+1) + "    | FU |      |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println();
 
