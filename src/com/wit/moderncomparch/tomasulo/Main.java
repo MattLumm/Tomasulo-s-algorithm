@@ -37,6 +37,7 @@ public class Main {
 		storeBuffer = new Buffer(4);
 		loadBuffer = new Buffer(4);
 		integerReservationStation = new Buffer(rs);
+		floatingPointAdditionReservationStation = new Buffer(rs);
 		floatingPointMultiplicationReservationStation = new Buffer(rs);
 		reorderBuffer = new ReorderBuffer(4);
 		memoryUnit = new ExecuteUnit();
