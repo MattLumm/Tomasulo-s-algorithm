@@ -90,4 +90,10 @@ public class Instruction {
     public int GetWriteResult(){
         return writeResult;
     }
+
+	@Override
+	public String toString() {
+		return "| " + name +    " | " + reg1 + " | " + reg2 + " | " + immediateReg3 + " | " + issue + " | " +
+				executionStart + " | " + writeResult + " |";
+	}
 }
