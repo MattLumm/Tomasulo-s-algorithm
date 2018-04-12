@@ -77,15 +77,8 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-	//	Issue.readOperands();
-	//	Issue.renameDestination();
-
-	//	Execute.checkLatency(latency);
-	//	Execute.setData();
-	//	Execute.getData();
-	//	Execute.snoopCDB();
-		Write.displayData(cycles);
+		
+		Write.displayData(instructions, cycles, loadBuffer);
 		Write.writebackInstruction(instructions[0]);
 	}
 

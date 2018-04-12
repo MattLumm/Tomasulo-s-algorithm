@@ -1,18 +1,23 @@
 package com.wit.moderncomparch.tomasulo;
 
 public class Write {
+
+    /**
+     * Displays data into tables
+     */
     public static void displayData(Instruction[] inst, int cycles, Buffer buff) {
         //Instruction table
-
         for(int i = 0; i <= (cycles - 1); i++){
-            buff.getAllInstructions();
+            ReorderBuffer reorderBuffer = new ReorderBuffer(4);
+
+            reorderBuffer.getAllResults();
 
             System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println("| Instruction     |      | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             for (int j = 0; j < 6; j++) {
-                System.out.println("|          |");
+                System.out.println("|     " + buff.getAllInstructions() + "    |");
             }
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println();
@@ -22,7 +27,7 @@ public class Write {
             System.out.println("| Load Buffers |  Busy  |  Address  |");
             System.out.println("+--------------+--------+-----------+");
             for (int j = 0; j < 3; j++) {
-                System.out.println("| Load Buffers |  Busy  |  Address  |");
+                System.out.println("|   " + reorderBuffer.getAllResults() + "   |");
             }
             System.out.println("+--------------+--------+-----------+");
             System.out.println();
@@ -43,14 +48,18 @@ public class Write {
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println("| Clock  |    |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
-            System.out.println("| Clock  | FU |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
+            System.out.println("| "+ (i+1) + "  | FU |  X0  |    X2    |    X4    |    X6    |    X8    |  X10 |  X12  |");
             System.out.println("+--------+----+------+----------+----------+----------+----------+------+-------+");
             System.out.println();
 
         }
     }
 
-
+    /**
+     * Adds the instruction to the Writeback buffer
+     * set instruction busy bit to false
+     * @param instruction to add to writeback buffer
+     */
     public static void writebackInstruction(Instruction inst) {
         //adds instruction to writeback buffer
         inst.getName();
