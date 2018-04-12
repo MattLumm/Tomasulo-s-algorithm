@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Tomasulo-s-algorithm:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Tomasulo_s_algorithm_jar</output-path>
+    <root id="archive" name="Tomasulo-s-algorithm.jar">
+      <element id="module-output" name="Tomasulo-s-algorithm" />
+    </root>
+  </artifact>
+</component>
