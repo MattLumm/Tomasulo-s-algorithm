@@ -141,7 +141,7 @@ public class Main {
      */
         public static boolean CheckRegisters(Instruction instruction, Boolean[]registerBusyBits){
             if(registerBusyBits[RegisterToInt(instruction.getRegs()[1])]==false){
-                if(registerBusyBits[RegisterToInt(instruction.getRegs()[0])]==false){
+                if(registerBusyBits[RegisterToInt(instruction.getRegs()[2])]==false){
                     return true;
                 }
             }
