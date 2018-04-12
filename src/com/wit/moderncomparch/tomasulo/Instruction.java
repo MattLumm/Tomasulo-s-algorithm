@@ -93,7 +93,11 @@ public class Instruction {
 
 	@Override
 	public String toString() {
-		return "| " + name +    " | " + reg1 + " | " + reg2 + " | " + immediateReg3 + " | " + issue + " | " +
-				executionStart + " | " + writeResult + " |";
+		if (name != null && reg1 != null && reg2 != null && immediateReg3 != null){
+			return "| " + name +    " | " + reg1 + " | " + reg2 + " | " + immediateReg3 + " | " + issue + " | " +
+					executionStart + " | " + writeResult + " |";
+		} else {
+			return "|               |      |      |      |        |               |             |";
+		}
 	}
 }

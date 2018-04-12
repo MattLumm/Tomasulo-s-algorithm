@@ -77,7 +77,11 @@ public class Buffer {
     public String toString() {
         StringBuilder output = new StringBuilder();
         for (Instruction instruction : instructionBuffer){
-            output.append(instruction.toString()).append("/n");
+            if (instruction != null){
+                output.append(instruction.toString()).append("/n");
+            } else {
+                return "|               |      |      |      |        |               |             |";
+            }
         }
         return output.toString();
     }
