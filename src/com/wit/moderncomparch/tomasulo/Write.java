@@ -8,8 +8,9 @@ public class Write {
     public static void displayData(Instruction[] inst, int cycles, Buffer buff, Boolean[] bB) {
         //Instruction table
         for(int i = 0; i <= (cycles - 1); i++){
-            ReorderBuffer reorderBuffer = new ReorderBuffer(4);
+            ReorderBuffer reBuff = new ReorderBuffer(4);
             String table1 = buff.getAllInstructions().toString();
+            String table2 = reBuff.getAllResults().toString();
 
             System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
@@ -26,7 +27,7 @@ public class Write {
             System.out.println("| Load Buffers |  Busy  |  Address  |");
             System.out.println("+--------------+--------+-----------+");
             for (int j = 0; j < 3; j++) {
-                System.out.println("|   " + reorderBuffer.getAllResults().toString() + "   |");
+                System.out.println("|   " + table2 + "   |");
             }
             System.out.println("+--------------+--------+-----------+");
             System.out.println();
@@ -57,7 +58,7 @@ public class Write {
     /**
      * Adds the instruction to the Writeback buffer
      * set instruction busy bit to false
-     * @param instruction to add to writeback buffer
+     * @param inst instruction to add to writeback buffer
      */
     public static void writebackInstruction(Instruction inst) {
         //adds instruction to writeback buffer
