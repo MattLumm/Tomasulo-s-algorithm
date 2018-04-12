@@ -3,15 +3,18 @@ package com.wit.moderncomparch.tomasulo;
 
 public class Write {
 
-    public static void displayData(int cycles) {
+    public static void displayData(Instruction[] inst, int cycles) {
         //Instruction table
-        for(int i = 1; i <= cycles; i++){
-            System.out.println("Cycle " + i);
+
+        for(int i = 0; i <= (cycles - 1); i++){
+            Buffer buff = new Buffer(4);
+            inst = buff.getAllInstructions();
+            System.out.println("Cycle " + (i + 1));
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println("| Instruction     |      | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             for (int j = 0; j < 6; j++) {
-                System.out.println("| Instruction     | dest | Rs1  | Rs2  | Issue  | Execution Starts | Write Result |");
+                System.out.println("|     " + inst + "     |");
             }
             System.out.println("+-----------------+------+------+------+--------+------------------+--------------+");
             System.out.println();
