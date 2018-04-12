@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner reader = new Scanner(System.in);
-    public Boolean[] registerBusyBits;
+    public static Boolean[] registerBusyBits;
     public static Buffer instructionQueue;
     public static Buffer storeBuffer;
     public static Buffer loadBuffer;
@@ -38,6 +38,10 @@ public class Main {
 		memoryUnit = new ExecuteUnit();
 		fPadderUnit = new ExecuteUnit();
 		fPmultiplierUnit = new ExecuteUnit();
+        Boolean[] registerBusyBits = new Boolean[10];
+        for(int i=0; registerBusyBits.length>i;i++){
+            registerBusyBits[i]=false;
+        }
 
 		for (Instruction instruction:instructions){
 			instructionQueue.addInstruction(instruction);
@@ -46,8 +50,11 @@ public class Main {
 		try {
 			currentCycle++;
 			Issue.queueToReservation(instructions[0]);
+            flipRegisterBusyBit(instructions[0].getRegs()[0]);
 			try{
-				Execute.execute(instructions[0], cycles, currentCycle);
+			    if(CheckRegisters(instructions[0])){
+                    Execute.execute(instructions[0], latency, currentCycle);
+                }
 				memoryUnit.checkExecute(currentCycle);
 				fPadderUnit.checkExecute(currentCycle);
 				fPmultiplierUnit.checkExecute(currentCycle);
@@ -100,5 +107,40 @@ public class Main {
 			int rs_size = reader.nextInt();
 			return rs_size;
 		}
-
+    /**
+     * Takes a Register String from an Instruction and flips it's position in the ResiterBusyBits to either true or false
+     *
+     */
+		public static void flipRegisterBusyBit(String register){
+            int registerIndex=RegisterToInt(register);
+            if(registerBusyBits[registerIndex]== true) {
+                registerBusyBits[registerIndex] = false;
+            }
+            else{
+                registerBusyBits[registerIndex] = true;
+            }
+            return;
+        }
+    /**
+     * Takes a Register String from an Instruction and converts it to a number
+     *
+     */
+        public static int RegisterToInt(String register){
+            int registerIndex=0;
+            register=register.substring(1,register.length());
+            registerIndex= Integer.parseInt(register);
+            return registerIndex;
+        }
+    /**
+     * Takes the 2nd and 3rd Register String from an Instruction and checks if they're not Busy
+     *
+     */
+        public static boolean CheckRegisters(Instruction instruction){
+            if(registerBusyBits[RegisterToInt(instruction.getRegs()[1])]==false){
+                if(registerBusyBits[RegisterToInt(instruction.getRegs()[0])]==false){
+                    return true;
+                }
+            }
+            return false;
+        }
     }

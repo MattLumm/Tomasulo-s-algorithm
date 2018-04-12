@@ -7,8 +7,8 @@ public class Execute {
 	 * Sets the End of execution cycle of the Instruction
 	 * @return True if the Instruction is added properly
 	 */
-	public static boolean execute(Instruction instruction, int cycles, int currentCycles) throws Exception {
-		int endCycle=cycles+currentCycles;
+	public static boolean execute(Instruction instruction, int latency, int currentCycles) throws Exception {
+		int endCycle=latency+currentCycles;
 		instruction.setExecuteLatencyCycle(endCycle);
 		String instructionType = instruction.getName();
 		switch (instructionType) {

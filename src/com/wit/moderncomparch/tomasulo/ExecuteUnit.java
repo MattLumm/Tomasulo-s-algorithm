@@ -35,9 +35,10 @@ public class ExecuteUnit{
      * Checks if execution is done for the instruction
      * @return True if the Instruction is finished executeing
      */
-    public boolean checkExecute(int currentCycle){
-        if(currentCycle>=endCycle){
-            busyBit=false;
+    public boolean checkExecute(int currentCycle) {
+        if (currentCycle >= endCycle) {
+            busyBit = false;
+            Main.flipRegisterBusyBit(executingInstruction.getRegs()[0]);
             return true;
         }
         return false;
