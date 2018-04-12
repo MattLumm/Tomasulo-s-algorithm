@@ -50,35 +50,33 @@ public class Main {
 		for (Instruction instruction:instructions){
 			instructionQueue.addInstruction(instruction);
 		}
-
-		try {
-			currentCycle++;
-			Issue.queueToReservation(instructions[0]);
-            flipRegisterBusyBit(instructions[0].getRegs()[0],registerBusyBits);
-			try{
-			    if(CheckRegisters(instructions[0], registerBusyBits)){
-                    Execute.execute(instructions[0], latency, currentCycle);
-                }
-				if(memoryUnit.checkExecute(currentCycle))
-                {
-                    flipRegisterBusyBit(memoryUnit.getExecutingInstruction().getRegs()[0],registerBusyBits);
-                }
-                if(fPadderUnit.checkExecute(currentCycle))
-                {
-                    flipRegisterBusyBit(fPadderUnit.getExecutingInstruction().getRegs()[0],registerBusyBits);
-                }
-                if(fPmultiplierUnit.checkExecute(currentCycle))
-                {
-                    flipRegisterBusyBit(fPmultiplierUnit.getExecutingInstruction().getRegs()[0],registerBusyBits);
-                }
-			} catch(Exception e){
+		for(currentCycle=0;currentCycle<cycles;currentCycle++) {
+			try {
+				Issue.queueToReservation(instructions[0]);
+				instructions[0].setIssue(currentCycle);
+				flipRegisterBusyBit(instructions[0].getRegs()[0], registerBusyBits);
+				try {
+					if (CheckRegisters(instructions[0], registerBusyBits)) {
+						Execute.execute(instructions[0], latency, currentCycle);
+					}
+					if (memoryUnit.checkExecute(currentCycle)) {
+						flipRegisterBusyBit(memoryUnit.getExecutingInstruction().getRegs()[0], registerBusyBits);
+					}
+					if (fPadderUnit.checkExecute(currentCycle)) {
+						flipRegisterBusyBit(fPadderUnit.getExecutingInstruction().getRegs()[0], registerBusyBits);
+					}
+					if (fPmultiplierUnit.checkExecute(currentCycle)) {
+						flipRegisterBusyBit(fPmultiplierUnit.getExecutingInstruction().getRegs()[0], registerBusyBits);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
-		Write.displayData(instructions, cycles, loadBuffer);
+		Write.displayData(instructions, cycles, loadBuffer,registerBusyBits);
 		Write.writebackInstruction(instructions[0]);
 	}
 
