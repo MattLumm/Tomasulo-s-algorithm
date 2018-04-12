@@ -14,7 +14,7 @@ public class Buffer {
      */
     public boolean addInstruction(Instruction instruction){
         for (int i = 0; i < instructionBuffer.length; i++){
-            if (instructionBuffer[i] != null){
+            if (instructionBuffer[i] == null){
                 instructionBuffer[i] = instruction;
                 return true;
             }
@@ -71,5 +71,14 @@ public class Buffer {
      */
     public Instruction[] getAllInstructions(){
         return instructionBuffer;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (Instruction instruction : instructionBuffer){
+            output.append(instruction.toString()).append("/n");
+        }
+        return output.toString();
     }
 }

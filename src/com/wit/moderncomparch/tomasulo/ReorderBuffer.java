@@ -15,7 +15,7 @@ public class ReorderBuffer extends Buffer {
      */
     public boolean addInstruction(Instruction instruction, double result){
         for (int i = 0; i < instructionBuffer.length; i++){
-            if (instructionBuffer[i] != null){
+            if (instructionBuffer[i] == null){
                 instructionBuffer[i] = instruction;
                 results[i] = result;
                 return true;
